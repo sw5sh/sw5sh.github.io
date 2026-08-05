@@ -1,0 +1,30 @@
+title: Anish Biswas
+description: >-
+  Anish Biswas — incoming PhD student in Aditya Akella's lab at UT Austin,
+  working on serving systems for LLMs and agentic workloads.
+url: ""
+baseurl: ""
+
+# --- profile ---
+name: "Anish Biswas"
+role_line: "PhD Student, Computer Science · The University of Texas at Austin"
+bio: >-
+  I am a first-year PhD student at UT Austin where I am advised by Prof. Aditya Akella.
+  Previously, I was a Pre-Doctoral Research Fellow at Microsoft Research India, where I was advised by
+  Dr. Jayashree Mohan, where I worked on systems for effecient blah blah bllah
+
+# --- footer links ---
+links:
+  cv: "#"
+  scholar: "#"
+  github: "https://github.com/sw5sh"
+  email: "mailto:anish2kb@proton.me"
+
+plugins:
+  - jekyll-feed
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - vendor

@@ -1,0 +1,71 @@
+---
+layout: null
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ site.name }}</title>
+<meta name="description" content="{{ site.description }}">
+<link rel="preload" href="{{ '/assets/fonts/eb-garamond-normal.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}">
+</head>
+<body>
+
+<div class="paper-texture page">
+
+  <section class="hero-section">
+    <div class="content-col">
+
+      <div class="hero-row">
+        <div class="hero-text">
+          <h1 class="name-h1">{{ site.name }}</h1>
+          <div class="role-line">{{ site.role_line }}</div>
+        </div>
+        <picture>
+          <source srcset="{{ '/assets/photo.webp' | relative_url }}" type="image/webp">
+          <img class="photo" src="{{ '/assets/photo.jpg' | relative_url }}" alt="{{ site.name }}" width="336" height="336" decoding="async">
+        </picture>
+      </div>
+
+      <div class="hairline hero-hairline"></div>
+
+      <p class="bio-p">{{ site.bio }}</p>
+
+      <div class="section-label">Publications</div>
+      <div class="hairline"></div>
+
+      {% for pub in site.data.publications %}
+      <div class="pub-row">
+        <div class="pub-year">{{ pub.year }}</div>
+        <div>
+          <a href="{{ pub.link | default: '#' }}" class="pub-title">{{ pub.title }}</a>
+          <div class="pub-meta">
+            {%- assign parts = pub.authors | split: site.name -%}
+            {%- for part in parts -%}
+              {{ part }}{% unless forloop.last %}<b>{{ site.name }}</b>{% endunless %}
+            {%- endfor -%}
+          </div>
+          <div class="pub-meta pub-venue">
+            {{ pub.venue }}
+            {%- if pub.pdf %} · <a href="{{ pub.pdf }}">PDF</a>{% endif -%}
+            {%- if pub.code %} · <a href="{{ pub.code }}">code</a>{% endif -%}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+
+      <div class="footer-links">
+        <a href="{{ site.links.cv }}">CV</a>
+        <a href="{{ site.links.scholar }}">Scholar</a>
+        <a href="{{ site.links.github }}">GitHub</a>
+        <a href="{{ site.links.email }}">Email</a>
+      </div>
+
+    </div>
+  </section>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,14 @@
+# One entry per publication. Order = display order (top to bottom).
+# pdf / code are optional — omit the key entirely to hide that link.
+
+- year: "2026"
+  title: "Sutradhara: An Intelligent Orchestrator-Engine Co-design for Tool-based Agentic Inference"
+  authors: "Anish Biswas, Kanishk Goel, Srivarshinee S, Jayashree Mohan, Alind Khare, et al."
+  venue: "ASPLOS 27"
+  link: "https://arxiv.org/pdf/2601.12967"
+
+- year: "2025"
+  title: "ModServe: Scalable and Resource-Efficient Large Multimodal Model Serving"
+  authors: "Haoran Qiu, Anish Biswas, Jayashree Mohan, Alind Khare, Esha Choukse, et al."
+  venue: "ACM SoCC '25"
+  link: "https://arxiv.org/pdf/2502.00937"
