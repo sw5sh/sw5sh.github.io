@@ -7,15 +7,82 @@ layout: null
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{{ profile.name }}</title>
-<meta name="description" content="{{ site.description }}">
+<title>{{ profile.name }} — Ph.D. Student, UT Austin</title>
+<meta name="description" content="{{ site.description | strip }}">
+<meta name="author" content="{{ profile.name }}">
+<meta name="robots" content="index, follow">
+<meta name="googlebot" content="index, follow">
+<meta name="robots" content="noai, noimageai">
+{% if site.url != "" %}
+<link rel="canonical" href="{{ '/' | absolute_url }}">
+<meta property="og:url" content="{{ '/' | absolute_url }}">
+<meta property="og:image" content="{{ '/assets/photo.jpg' | absolute_url }}">
+<meta name="twitter:image" content="{{ '/assets/photo.jpg' | absolute_url }}">
+{% endif %}
+<meta property="og:type" content="profile">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="{{ profile.name }}">
+<meta property="og:title" content="{{ profile.name }}">
+<meta property="og:description" content="{{ site.description | strip }}">
+<meta property="og:image:alt" content="{{ profile.name }}">
+<meta property="profile:first_name" content="Anish">
+<meta property="profile:last_name" content="Biswas">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="{{ profile.name }}">
+<meta name="twitter:description" content="{{ site.description | strip }}">
 <link rel="icon" href="{{ '/assets/favicon.ico' | relative_url }}" sizes="any">
 <link rel="icon" type="image/png" href="{{ '/assets/favicon-32.png' | relative_url }}" sizes="32x32">
 <link rel="apple-touch-icon" href="{{ '/assets/apple-touch-icon.png' | relative_url }}">
+<link rel="me" href="{{ profile.links.scholar }}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,400;0,500;0,600;0,700&family=Lato:ital,wght@0,400;0,700;1,400;1,700&display=swap">
 <link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": {% if site.url != "" %}{{ '/#person' | absolute_url | jsonify }}{% else %}{{ '#person' | jsonify }}{% endif %},
+      "name": {{ profile.name | jsonify }},
+      "givenName": "Anish",
+      "familyName": "Biswas",
+      "jobTitle": {{ profile.role_line | jsonify }},
+      "description": {{ site.description | strip | jsonify }},
+      "email": "anishbiswas@utexas.edu",
+      "affiliation": {
+        "@type": "CollegeOrUniversity",
+        "name": "The University of Texas at Austin",
+        "url": "https://www.cs.utexas.edu/"
+      },
+      "sameAs": [
+        {%- for id in profile.same_as %}
+        {{ id | jsonify }}{% unless forloop.last %},{% endunless %}
+        {%- endfor %}
+      ]{% if site.url != "" %},
+      "url": {{ '/' | absolute_url | jsonify }},
+      "image": {{ '/assets/photo.jpg' | absolute_url | jsonify }}{% endif %}
+    }{% for pub in site.data.publications %}{% assign title_parts = pub.title | split: '] ' %}{% if pub.title contains '[' and title_parts.size > 1 %}{% assign pub_name = title_parts | slice: 1, 99 | join: '] ' %}{% else %}{% assign pub_name = pub.title %}{% endif %}{% assign author_list = pub.authors | split: ", " %},
+    {
+      "@type": "ScholarlyArticle",
+      "headline": {{ pub_name | jsonify }},
+      "author": [
+        {%- for author in author_list %}
+        { "@type": "Person", "name": {{ author | jsonify }} }{% unless forloop.last %},{% endunless %}
+        {%- endfor %}
+      ],
+      "datePublished": {{ pub.year | jsonify }},
+      "isPartOf": { "@type": "CreativeWork", "name": {{ pub.venue | jsonify }} }{% if pub.link %},
+      "url": {{ pub.link | jsonify }}{% endif %}{% if pub.pdf %},
+      "encoding": {
+        "@type": "MediaObject",
+        "contentUrl": {{ pub.pdf | jsonify }}
+      }{% endif %}
+    }{% endfor %}
+  ]
+}
+</script>
 </head>
 <body>
 

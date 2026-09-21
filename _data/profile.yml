@@ -10,3 +10,8 @@ links:
   scholar: "https://scholar.google.com/citations?user=O5UNzEMAAAAJ"
   github: "https://github.com/sw5sh"
   email: "mailto:anishbiswas@utexas.edu"
+
+# Profiles Google should treat as the same person. Academic identity only —
+# do not add sw5sh / coding-handle URLs here.
+same_as:
+  - "https://scholar.google.com/citations?user=O5UNzEMAAAAJ"

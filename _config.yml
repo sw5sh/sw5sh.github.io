@@ -2,6 +2,8 @@ title: Anish Biswas
 description: >-
   Anish Biswas — Ph.D. student in Aditya Akella's lab at UT Austin,
   working on serving systems for LLMs and agentic workloads.
+# Public site origin, no trailing slash. Set this when you pick a host
+# (e.g. https://anishbiswas.com). Needed for canonical URLs, Open Graph, sitemap.
 url: ""
 baseurl: ""
 
