@@ -1,14 +1,20 @@
 ---
 layout: null
 ---
+{% assign profile = site.data.profile %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{{ site.name }}</title>
+<title>{{ profile.name }}</title>
 <meta name="description" content="{{ site.description }}">
-<link rel="preload" href="{{ '/assets/fonts/eb-garamond-normal.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
+<link rel="icon" href="{{ '/assets/favicon.ico' | relative_url }}" sizes="any">
+<link rel="icon" type="image/png" href="{{ '/assets/favicon-32.png' | relative_url }}" sizes="32x32">
+<link rel="apple-touch-icon" href="{{ '/assets/apple-touch-icon.png' | relative_url }}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,400;0,500;0,600;0,700&family=Lato:ital,wght@0,400;0,700;1,400;1,700&display=swap">
 <link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}">
 </head>
 <body>
@@ -20,31 +26,42 @@ layout: null
 
       <div class="hero-row">
         <div class="hero-text">
-          <h1 class="name-h1">{{ site.name }}</h1>
-          <div class="role-line">{{ site.role_line }}</div>
+          <h1 class="name-h1">{{ profile.name }}</h1>
+          <div class="role-line">{{ profile.role_line }}</div>
         </div>
-        <picture>
-          <source srcset="{{ '/assets/photo.webp' | relative_url }}" type="image/webp">
-          <img class="photo" src="{{ '/assets/photo.jpg' | relative_url }}" alt="{{ site.name }}" width="336" height="336" decoding="async">
-        </picture>
+        <div class="photo-wrap">
+          <picture>
+            <source srcset="{{ '/assets/photo.webp' | relative_url }}" type="image/webp">
+            <img class="photo" src="{{ '/assets/photo.jpg' | relative_url }}" alt="{{ profile.name }}" width="336" height="336" decoding="async">
+          </picture>
+        </div>
       </div>
 
       <div class="hairline hero-hairline"></div>
 
-      <p class="bio-p">{{ site.bio }}</p>
+      <div class="bio">
+        {{ profile.bio | markdownify }}
+      </div>
 
-      <div class="section-label">Publications</div>
+      <h2 class="section-label">Publications</h2>
       <div class="hairline"></div>
 
       {% for pub in site.data.publications %}
       <div class="pub-row">
         <div class="pub-year">{{ pub.year }}</div>
-        <div>
-          <a href="{{ pub.link | default: '#' }}" class="pub-title">{{ pub.title }}</a>
+        <div class="pub-body">
+          <a href="{{ pub.link | default: '#' }}" class="pub-title">
+            {%- assign title_parts = pub.title | split: '] ' -%}
+            {%- if pub.title contains '[' and title_parts.size > 1 -%}
+              <span class="pub-tag">{{ title_parts.first }}]</span> {{ title_parts | slice: 1, 99 | join: '] ' }}
+            {%- else -%}
+              {{ pub.title }}
+            {%- endif -%}
+          </a>
           <div class="pub-meta">
-            {%- assign parts = pub.authors | split: site.name -%}
+            {%- assign parts = pub.authors | split: profile.name -%}
             {%- for part in parts -%}
-              {{ part }}{% unless forloop.last %}<b>{{ site.name }}</b>{% endunless %}
+              {{ part }}{% unless forloop.last %}<strong class="pub-me">{{ profile.name }}</strong>{% endunless %}
             {%- endfor -%}
           </div>
           <div class="pub-meta pub-venue">
@@ -57,10 +74,10 @@ layout: null
       {% endfor %}
 
       <div class="footer-links">
-        <a href="{{ site.links.cv }}">CV</a>
-        <a href="{{ site.links.scholar }}">Scholar</a>
-        <a href="{{ site.links.github }}">GitHub</a>
-        <a href="{{ site.links.email }}">Email</a>
+        <a href="{{ profile.links.cv | relative_url }}">CV</a>
+        <a href="{{ profile.links.scholar }}">Scholar</a>
+        <a href="{{ profile.links.github }}">GitHub</a>
+        <a href="{{ profile.links.email }}">Email</a>
       </div>
 
     </div>

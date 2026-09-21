@@ -1,9 +1,9 @@
 # Anish Biswas — Academic Homepage (Jekyll)
 
-Plain, fast, no build-tool learning curve. One HTML page + two YAML files.
+Plain, fast, no build-tool learning curve. One HTML page + YAML in `_data/`.
 
 ## Edit content
-- **Name, role, bio, footer links (CV/Scholar/GitHub/Email):** edit `_config.yml`.
+- **Name, role, bio, footer links (CV/Scholar/GitHub/Email):** edit `_data/profile.yml`. Jekyll reloads this on save.
 - **Publications:** edit `_data/publications.yml` — add/remove/reorder entries freely; each is a plain YAML block:
   ```yaml
   - year: "2025"
@@ -14,7 +14,7 @@ Plain, fast, no build-tool learning curve. One HTML page + two YAML files.
     code: "https://github.com/..." # omit this line if no code
     link: "#"                    # where the title links to
   ```
-  Your own name in `authors` is automatically bolded — just spell it exactly as in `_config.yml`'s `name`.
+  Your own name in `authors` is automatically bolded — just spell it exactly as in `_data/profile.yml`'s `name`.
 - **Photo:** replace `assets/photo.jpg` with your own (square-ish works best — it's shown at 112×112 with slightly rounded corners).
 
 ## Run locally

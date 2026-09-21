@@ -1,0 +1,12 @@
+name: "Anish Biswas"
+role_line: "PhD Student, Computer Science - UT Austin"
+bio: |
+  I am a first-year Ph.D. student in Computer Science at The University of Texas at Austin, advised by [Prof. Aditya Akella](https://www.cs.utexas.edu/~akella/).
+
+  Previously, I was a Pre-Doctoral Research Fellow at Microsoft Research India, where I was advised by [Jayashree Mohan](https://www.microsoft.com/en-us/research/people/jamohan/) and [Ramachandran Ramjee](https://www.microsoft.com/en-us/research/people/ramjee/) and worked on efficient and scalable serving systems for large multimodal language models and agentic workloads.
+
+links:
+  cv: "/assets/cv.pdf"
+  scholar: "https://scholar.google.com/citations?user=O5UNzEMAAAAJ"
+  github: "https://github.com/sw5sh"
+  email: "mailto:anishbiswas@utexas.edu"
